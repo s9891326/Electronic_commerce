@@ -18,6 +18,7 @@ class Post(models.Model):
 def get_image_path(instance, filename):
     return os.path.join('uploads', filename)
 
+
 class Product(models.Model):
     # basic info，基本屬性
     name = models.CharField(max_length=100, blank=False)
