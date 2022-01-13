@@ -1,0 +1,40 @@
+<!-- django template tag
+讓我們能夠繼承其他 html -->
+{% extends "shop/base.html" %}
+
+<!-- 輸入相同的 block 名稱
+就可以在被繼承的地方插入 -->
+{% block content %}
+<div align="center">
+    <form method="post" action="./api/username">
+        你的名字：<input type="text" name="username" placeholder="name"> <button type="submit">送出</button>
+     </form>
+</div>
+
+<br>
+<div>
+    var: {{ first_var }} and {{ second_var }}.
+
+    <ul>
+        {% for sub_item in third_list %}
+            {% if sub_item == "來比對我阿" %}
+                <li>
+                    {{ second_var|add:100 }}
+                </li>
+            {% elif sub_item == "你好" %}
+                <li>
+                    真正高興地見到你
+                </li>
+            {% else %}
+                <li>
+                    {{ sub_item }}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+
+<br>
+
+<!-- 依舊別忘了 closing -->
+{% endblock %}
