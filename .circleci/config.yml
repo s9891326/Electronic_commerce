@@ -7,10 +7,12 @@ jobs:
     steps:
       - checkout
       - run:django.db.backends.sqlite3
-          command: pip install django~=3.0.3
+          command: |
+            pip install django~=3.0.3
           name: Install
       - run:
-          command: python manage.py test
+          command: |
+            python manage.py test
           name: Test
 
 workflows:
