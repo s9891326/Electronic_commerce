@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           command: |
-            pip install django~=3.0.3
+            pip install -r requirements.txt
           name: Install
       - run:
           command: |
