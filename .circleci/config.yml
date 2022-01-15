@@ -1,26 +1,35 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
+# CircleCI 的版本
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+  # 把這個工作取名叫做 `build-and-test`
+  build-and-test:
+    # 告訴 circleci，我需要 docker 的環境
     docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+      # 告訴 circleci，我要用 Docker Hub 上的
+      # `circleci/python` 的映像檔
+      # 而且 tag 是要 3.8.1 的 tag
+      - image: circleci/python:3.8.1
     steps:
+      # 第一步
       - checkout
+      # 第二步
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          # 先安裝 django
+          command: |
+            pip install django~=3.0.3
+          # 只是幫這個指令取名字而已
+          name: Install
+      # 第三步
+      - run:
+          # 執行 django 的測試
+          command: |
+            python manage.py test
+          name: Test
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+# 告訴 CircleCI，我要執行的工作，
+# 總共要執行 `build-and-test` 這一個工作
 workflows:
-  say-hello-workflow:
+  main:
     jobs:
-      - say-hello
+      - build-and-test
