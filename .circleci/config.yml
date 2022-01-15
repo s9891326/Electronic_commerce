@@ -14,7 +14,7 @@ jobs:
       # 第一步
       - checkout
       # 第二步
-      - run:
+      - run:django.db.backends.sqlite3
           # 先安裝 django
           command: |
             pip install django~=3.0.3
