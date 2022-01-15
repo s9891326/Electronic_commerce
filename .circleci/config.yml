@@ -16,15 +16,13 @@ jobs:
       # 第二步
       - run:django.db.backends.sqlite3
           # 先安裝 django
-          command: |
-            pip install django~=3.0.3
+          command: pip install django~=3.0.3
           # 只是幫這個指令取名字而已
           name: Install
       # 第三步
       - run:
           # 執行 django 的測試
-          command: |
-            python manage.py test
+          command: python manage.py test
           name: Test
 
 # 告訴 CircleCI，我要執行的工作，
