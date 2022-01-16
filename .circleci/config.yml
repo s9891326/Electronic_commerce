@@ -2,9 +2,6 @@ version: 2.1
 
 jobs:
   build-and-test:
-    branches:
-      only:
-        - master
     docker:
       - image: circleci/python:3.8.1
     steps:
@@ -21,4 +18,8 @@ jobs:
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build-and-test:
+          filters:
+            branches:
+              only:
+                - feature.master.update_circleci_config_filter
