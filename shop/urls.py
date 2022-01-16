@@ -20,6 +20,10 @@ urlpatterns = [
     path('', views.shop_view),
     path('shop/create', views.post_create_view, name="post_create_view"),
     path('test', views.json_response_view),
+    path('insert/', views.insert_view),
+    path('lookup/', views.lookup_view),
+    path('modify/', views.modify_view),
+    path('delete/', views.delete_view),
 ]
 
 urlpatterns += static(
