@@ -1,0 +1,21 @@
+version: 2.1
+
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/python:3.8.1
+    steps:
+      - checkout
+      - run:
+          command: |
+            pip install -r requirements.txt
+          name: Install
+      - run:
+          command: |
+            python manage.py test
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
