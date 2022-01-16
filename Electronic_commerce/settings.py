@@ -75,11 +75,19 @@ WSGI_APPLICATION = 'Electronic_commerce.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+# Mysql 創建新DB語法
+# CREATE DATABASE `django_mysql` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(BASE_DIR / 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django_mysql',
+        'USER': 'root',
+        'PASSWORD': 'Root&123',
+        'HOST': '192.168.223.127',
+        'POST': 3306,
+        'CONN_MAX_AGE': 280000,               # mysql wait_timeout和interactive_timeout为288000，设置成比它小一点
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
